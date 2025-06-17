@@ -1,0 +1,134 @@
+.MoviePoster{
+    width: 25vw;
+    
+}
+.content-movie{
+    color: white;
+}
+.container{
+    display: flex;
+    /* text-align: center; */
+    align-items: flex-start;  
+    margin: 5rem 0rem 9.375rem;
+    /* margin: TOP RIGHT+LEFT BOTTOM; */
+    gap: 5rem;
+    padding: 2rem 4rem; 
+    box-sizing: border-box;
+}
+h1{
+    font-family:  Netflix Sans, Helvetica Neue, Segoe UI, Roboto, Ubuntu, sans-serif;
+    font-size: 10vh;
+}
+.pre{
+    color: gray;
+    font-family: Arial, Helvetica, sans-serif;
+    font-size: 0.7rem;
+    padding-top: 0.3rem;
+    padding-left: 15px;
+    
+}
+.movie-nav{
+    /* background-color: black; */
+    color: white;
+    /* gap:10px; */
+    display: flex;
+    
+    padding-left: 15px;
+    padding-top: 3rem;
+    border-bottom: 2px solid transparent;
+    /* border-bottom: 9px solid white; */
+}
+
+.tab-btn{
+    background: none;
+    border: none;
+    color: gray;
+    font-size: 1rem;
+    padding-bottom: 5px;
+    border-bottom: 2px solid transparent;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    padding: 0.5rem 1rem;         /* 👈 adds inner space (top/bottom + left/right) */
+    margin-right: 1rem;  
+}
+.tab-btn.active {
+    color: red;
+    border-bottom: 6px solid red;
+    /* width: 100px; */
+    /* padding-left: 7px; */
+  }
+  .overview-section{
+    padding-left: 19px;
+    padding-top:20px;
+    color: white;
+    line-height: 1.6;
+    font-family: 'Roboto', 'Open Sans', Arial, sans-serif;
+  }
+  .overview-section > h3 {
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    padding-bottom: 15px;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  h3{
+    font-family: 'Segoe UI', Roboto, 'Helvetica Neue', Arial, sans-serif;
+    padding-bottom: 15px;
+    font-size: 2rem;
+    font-weight: 600;
+  }
+  .overview-section > p {
+    padding-top: 10px;
+    font-size: 1rem;
+    color: #ccc;
+    margin: 0.5rem 0;
+  }
+ 
+  .overview-section span {
+    font-weight: 600;
+    color: #eee;
+  }
+  ul{
+    list-style: none;
+    padding-top: 10px;
+    font-size: 1rem;
+    color: #ccc;
+    margin: 0.5rem 0;
+  }
+  .row{
+    display: block;
+  }
+  .movie-actions{
+    position: absolute;
+    display: flex;
+    margin-top: 16rem;
+    margin-left: 10rem;
+    align-items: center;
+gap: 4px;
+    /* margin-top: 600px; */
+  }
+  .play-button{
+   background:rgba(19, 18, 18, 0.464);
+   border: solid;
+   border-color: red;
+   width: 50px;
+   height: 50px;
+   border-radius: 20px;
+   color: rgb(232, 11, 11);
+  }
+  .watchlist-button{
+    background:rgba(19, 18, 18, 0.464);
+   border: solid;
+   border-color: rgb(251, 251, 251);
+   width: 50px;
+   height: 50px;
+   border-radius: 20px;
+   /* margin-top: 100px; */
+   color: rgb(185, 160, 160);
+  }
+  .netflix-watchlist-btn{
+    margin-left: 1rem;
+    background-color: black;
+    border: none;
+    color: rgb(201, 8, 8);
+  }
+  
