@@ -1,7 +1,7 @@
 import React from "react";
 import './Banner.css'
 import '../../components/ROWS/Row.css'
-import type{ BannerProps } from "../../types/BannerProps";
+import type{ BannerProps } from "../../Interface/BannerProps";
 import {motion} from 'framer-motion'
 import { FaPlay } from "react-icons/fa";
 import { AiOutlineInfoCircle } from "react-icons/ai";

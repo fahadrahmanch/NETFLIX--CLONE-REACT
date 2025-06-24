@@ -1,16 +1,19 @@
 import React, { useEffect, useState } from 'react'
 import { useParams } from 'react-router-dom'
 import axios from 'axios'
+import { useWatchlist } from '../context/WatchlistContext'
 import '../components/MovieDetail/MovieDetail.css'
-
+import { Link } from 'react-router-dom'
 const MovieDetails: React.FC = () => {
     const { id } = useParams<{ id: string }>()
     const [movie, setMovie] = useState<any>(null)
     const base_url = 'https://image.tmdb.org/t/p/w500';
     const [activeTab, setActiveTab] = useState("OVERVIEW")
     const tabs = ["OVERVIEW", "TRAILERS & MORE", "MORE LIKE THIS", "DETAILS"];
-    const API_KEY = import.meta.env.VITE_API_KEY;
-    const [watch, isWatch] = useState(false)
+    const API_KEY = import.meta.env.VITE_API_KEY;    
+const { watchlist, addToWatchlist, removeFromWatchlist,isInwatchList} = useWatchlist();
+    // const isInwatch=movie&&isInwatchList(movie?.id)
+   
 
     useEffect(() => {
         const fetchMovies = async () => {
@@ -31,27 +34,23 @@ const MovieDetails: React.FC = () => {
             fetchMovies()
         }
     }, [id])
-   useEffect(()=>{
-    const watchlist=JSON.parse(localStorage.getItem('watchlist')||'[]')
-    const alreadyAdded=watchlist.some((item:any)=>item.id==movie?.id)
-    console.log(alreadyAdded)
-    isWatch(alreadyAdded)
-   },[movie])
-    const watchHandle = (bool: boolean) => {
-        isWatch(bool)
-       if(!movie)return
-       const storedList=JSON.parse(localStorage.getItem('watchlist')||'[]')
-       if(bool){
-        const already=storedList.some((item:any)=>item.id===movie?.id)
-        if(!already){
-            const update=[...storedList,movie];
-            localStorage.setItem('watchlist',JSON.stringify(update))
+
+
+    const watchHandle=()=>{
+        if(!movie)return
+        console.log(isInwatchList(movie.id))
+        if(!isInwatchList(movie?.id)){
+            addToWatchlist(movie)
+            console.log("hello")
+        }else{
+      
+
+            removeFromWatchlist(movie.id)
         }
-       }else{
-        const update=storedList.filter((item:any)=>item.id!=movie?.id)
-        localStorage.setItem('watchlist',JSON.stringify(update))
-       }    
     }
+
+
+
     return (
         <div className='container'>
             {movie && (
@@ -69,8 +68,8 @@ const MovieDetails: React.FC = () => {
                     <>
                         <h1>{movie.title}</h1>
                         <pre className='pre'>{new Date(movie.release_date).getFullYear()}  |  {Math.floor(movie.runtime / 60)} h {movie.runtime % 60} min <button
-                            className="netflix-watchlist-btn" onClick={() => watchHandle(!watch)}>
-                            {watch ? '✔ Added to My List' : '+ My List'}
+                            className="netflix-watchlist-btn" onClick={ watchHandle}>
+                            {isInwatchList(movie?.id) ? '✔ Added to My List' : '+ My List'}
                         </button></pre>
                         <div className="movie-nav">
                             {tabs.map((tab) => (
@@ -139,9 +138,11 @@ const MovieDetails: React.FC = () => {
                 </div>
             </div>
             <div className="movie-actions">
+            <Link to={`/play/${movie?.id}`}>
                 <button className="play-button">
                     <span className="triangle">▶</span>
                 </button>
+                </Link>
             </div>
         </div>
 

@@ -9,10 +9,14 @@ import Signup from './pages/signup.tsx'
 import ProtecteRouted from './components/ProtectedRoute'
 import MovieDetails from './pages/MovieDetail.tsx'
 import List from './pages/List.tsx'
+import Watch from './pages/Watch.tsx'
+import PublicRoute from './components/PublicRoute.tsx'
+
 function AppRoutes() {
 
   const location = useLocation();
   const isLoginPage = location.pathname === "/login"||location.pathname==='/signup';
+     
 
   return (
     <>
@@ -22,11 +26,13 @@ function AppRoutes() {
     
     <Routes>
       <Route path='/' element={<ProtecteRouted><Home/></ProtecteRouted>}/>
-      <Route path='/login' element={<Login/>}/>
-      <Route path='/signup' element={<Signup/>}/>
-      <Route path='movie/:id' element={<MovieDetails/>}/>
-      <Route path='/list' element={<List/>}/>
-    </Routes>
+      <Route path='/login' element={<PublicRoute><Login/></PublicRoute>}/>
+      <Route path='/signup' element={<PublicRoute><Signup/></PublicRoute>}/>
+      <Route path='/play/:id' element={<ProtecteRouted><Watch/></ProtecteRouted>}/>
+      <Route path='movie/:id' element={<ProtecteRouted><MovieDetails/></ProtecteRouted>}/>
+      <Route path='/list' element={<ProtecteRouted><List/></ProtecteRouted>}/>
+      </Routes>
+    
     <Footer/>
     
     </>

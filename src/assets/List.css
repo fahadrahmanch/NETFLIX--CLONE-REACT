@@ -1,6 +1,9 @@
 .grid {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    /* grid-template-columns: repeat(auto-fit, minmax(300px, 1fr)); */
+    grid-template-columns: 20rem 20rem 20rem 20rem;
+    grid-column-start: 1;
+    grid-column-end: 3;
     gap: 1.5rem; /* spacing between cards */
     padding: 6rem;
     position: relative;
@@ -15,6 +18,7 @@
     text-align: center;
     transition: transform 0.3s ease;
     border: 1px solid;
+    
   }
   .card img{
     width: 100%;
@@ -30,4 +34,7 @@
 .card:hover {
       transform: scale(1.05);
       border: none;
+  }
+  .parent{
+    height: 45rem;
   }

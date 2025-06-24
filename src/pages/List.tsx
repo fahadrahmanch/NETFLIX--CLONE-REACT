@@ -1,16 +1,17 @@
 import React from 'react'
 import '../assets/List.css'
 import { Link } from 'react-router-dom';
-
+import { useWatchlist } from '../context/WatchlistContext';
 const List:React.FC =()=>{
-    const watchList=JSON.parse(localStorage.getItem('watchlist')||'[]')
-    // const API_KEY = import.meta.env.VITE_API_KEY;
+    const{watchlist} =useWatchlist()
     const base_url = 'https://image.tmdb.org/t/p/w500';
-    console.log(watchList)
+    console.log(watchlist)
     return(
+        <div className='parent'>
+
 <div className='grid'>
-{watchList&&watchList.map((movie:any)=>(
-      <Link to={`/movie/${movie.id}`} key={movie.id}>
+{watchlist&&watchlist.map((movie:any)=>(
+    <Link to={`/movie/${movie.id}`} key={movie.id}>
 
 <div key={movie.id} className='card'>
     <img src={`${base_url}${movie.backdrop_path}`}
@@ -19,6 +20,7 @@ const List:React.FC =()=>{
 </div>
               </Link>
 ))}
+</div>
 </div>
     )
 }

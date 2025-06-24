@@ -3,6 +3,8 @@ import './LoginForm.css'
 import { signInWithEmailAndPassword } from 'firebase/auth'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
+import {  toast } from 'react-toastify';
+import 'react-toastify/dist/ReactToastify.css';     
 import {auth} from '../../firebase'
 const LoginForm:React.FC=()=>{
     const [email,setEmail]=useState('')
@@ -12,20 +14,24 @@ const LoginForm:React.FC=()=>{
         e.preventDefault()
        try{
          await signInWithEmailAndPassword(auth,email,password)
-         alert('login success')
-         navigate('/')
+         toast.success("Login successful! Welcome back", {
+            onClose: () => navigate('/')
+          });               
+        //  navigate('/')
        }
        catch(error){
-        alert(error)
+        // toast.error((error as Error).message);
+        toast.error('Login failed');
        }
     }
     return(
  <div className='Login'>
-<form className='form'>
+<form className='form' onSubmit={handleLogin}>
+     {/* <ToastContainer position="top-right" autoClose={3000} /> */}
     <h1 className='Sign-In-h1'>Sign In</h1>
     <input placeholder='Email ' onChange={(e)=>setEmail(e.target.value)}></input><br/>
-    <input placeholder='Password' onChange={(e)=>setPassword(e.target.value)}></input><br/>
-    <button onClick={handleLogin}>Sign In</button>
+    <input placeholder='Password' type='password' onChange={(e)=>setPassword(e.target.value)}></input><br/>
+    <button type='submit'>Sign In</button>
 </form>
 <div >
 <div className='left'>

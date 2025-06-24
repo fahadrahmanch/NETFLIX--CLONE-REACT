@@ -1,10 +1,12 @@
 
 import './LoginForm.css'
 import React, { useState } from 'react'
-import { createUserWithEmailAndPassword } from 'firebase/auth'
+import { createUserWithEmailAndPassword ,signOut} from 'firebase/auth'
 import {auth} from '../../firebase'
 import { useNavigate } from 'react-router-dom'
 import { Link } from 'react-router-dom';
+import {  toast } from 'react-toastify';
+
 const SignInForm:React.FC=()=>{
     const [email,setEmail]=useState('')
     const [password,setPassword]=useState('')
@@ -12,14 +14,15 @@ const SignInForm:React.FC=()=>{
     const handleLogin=async(e:React.FormEvent)=>{
         e.preventDefault()
         try{
-            console.log("heelo")
+           
           await createUserWithEmailAndPassword(auth,email,password)
-          alert('success')
-          navigate('/login')
+          await signOut(auth);
+          toast.success("signup successfull", {
+            onClose: () => navigate('/login')
+          });   
         }
         catch(error:any){
-            console.log('helo')
-            alert(error.message)
+              toast.error((error as Error).message);
         }
     }
     return(

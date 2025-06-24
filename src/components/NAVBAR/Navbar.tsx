@@ -4,6 +4,8 @@ import { FiSearch, FiBell,FiMenu } from "react-icons/fi";
 import {auth} from '../../firebase'
 import Logo from '../../assets/Logo/image.png'
 import { signOut } from "firebase/auth";
+import { Link } from 'react-router-dom';
+
 import './Navbar.css'
 const NAVBAR:React.FC=()=>{
     const [showMenu,setShowMenu]=useState(false)
@@ -30,14 +32,21 @@ const NAVBAR:React.FC=()=>{
         <nav className={`navbar ${isScrolled?'navbar--scrolled':''}`} >
             <div className="navbar_left">
             <div className="navbar_logo">
+                <Link to='/'>
             <img className='Logo-Netflix'src={Logo} alt="logo"></img>
+                </Link>
             </div>
             <ul className={`navbar_menu ${showMenu ? 'show' : ''}`}>
+                <Link to='/'>
                 <li>Home</li>
+                </Link>
                 <li>Tv Shows</li>
                 <li>Movies</li>
                 <li>News & Popular</li>
+
+                <Link to='list'>
                 <li>My List</li>
+                </Link>
                 <li>Browser by Launguages</li>
                </ul>
             </div>
